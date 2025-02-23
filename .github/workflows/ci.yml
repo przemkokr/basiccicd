@@ -1,42 +1,42 @@
 name: CI Weather App
 
-on: 
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+on:
+    push:
+        branches:
+            - main
+    pull_request:
+        branches:
+            - main
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+    build:
+        runs-on: ubuntu-latest
 
-    steps:
-    - uses: actions/checkout@v3
+        steps:
+            - uses: actions/checkout@v3
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-          node-version: '20'
-          cache: 'npm'
+            - name: Set up Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: "20"
+                  cache: "npm"
 
-    - name: Install dependencies
-      run: npm ci
+            - name: Install dependencies
+              run: npm ci
 
-    - name: Build Application
-      run: npm run build
+            - name: Build Application
+              run: npm run build
 
-    - name: Run Tests with Coverage
-      run: npm run test:coverage
-      continue-on-error: true
+            - name: Run Tests with Coverage
+              run: npm run test:coverage
+              continue-on-error: true
 
-  docker:
-    name: Docker Build and Test
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      
-      - name: Build Docker image
-        run: docker build -t weather-app .
+    docker:
+        name: Docker Build and Test
+        needs: build
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+
+            - name: Build Docker image
+              run: docker build -t weather-app .
