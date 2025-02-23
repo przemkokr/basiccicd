@@ -10,6 +10,7 @@ on:
 
 jobs:
     build:
+        name: Build and Test App
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v3
@@ -69,7 +70,7 @@ jobs:
               run: docker rm -f weather-app-container
 
     SBOM:
-        name: Build and Test
+        name: Build and Test SBOM
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v3
