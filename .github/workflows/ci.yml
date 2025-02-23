@@ -1,0 +1,9 @@
+name: CI Weather App
+
+on: 
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
